@@ -4,7 +4,6 @@ import { useContext } from "react";
 import { Context } from "../../context/Context";
 
 const Main = () => {
-  // destructuring the object of context
   const {
     input,
     setInput,
@@ -14,6 +13,14 @@ const Main = () => {
     loading,
     resultData,
   } = useContext(Context);
+
+const handleCardClick = (prompt) => {
+  setInput(prompt);
+  
+
+};
+
+
   return (
     <>
       <div className="main">
@@ -31,24 +38,23 @@ const Main = () => {
                 <p>How can I help you today?</p>
               </div>
               <div className="cards">
-    <div className="card">
-        <p>Explore the latest advancements in artificial intelligence and robotics</p>
-        <img src={assets.compass_icon} alt="CompassIcon" />
-    </div>
-    <div className="card">
-        <p>Discover groundbreaking research in biotechnology and healthcare</p>
-        <img src={assets.bulb_icon} alt="CompassIcon" />
-    </div>
-    <div className="card">
-        <p>Learn about cutting-edge medical treatments and breakthroughs</p>
-        <img src={assets.message_icon} alt="CompassIcon" />
-    </div>
-    <div className="card">
-        <p>Explore the world of coding and software development</p>
-        <img src={assets.code_icon} alt="CompassIcon" />
-    </div>
-</div>
-
+                <div className="card" onClick={() => handleCardClick("Explore the latest advancements in artificial intelligence and robotics")}>
+                  <p>Explore the latest advancements in artificial intelligence and robotics</p>
+                  <img src={assets.compass_icon} alt="CompassIcon" />
+                </div>
+                <div className="card" onClick={() => handleCardClick("Discover groundbreaking research in biotechnology and healthcare")}>
+                  <p>Discover groundbreaking research in biotechnology and healthcare</p>
+                  <img src={assets.bulb_icon} alt="CompassIcon" />
+                </div>
+                <div className="card" onClick={() => handleCardClick("Learn about cutting-edge medical treatments and breakthroughs")}>
+                  <p>Learn about cutting-edge medical treatments and breakthroughs</p>
+                  <img src={assets.message_icon} alt="CompassIcon" />
+                </div>
+                <div className="card" onClick={() => handleCardClick("Explore the world of coding and software development")}>
+                  <p>Explore the world of coding and software development</p>
+                  <img src={assets.code_icon} alt="CompassIcon" />
+                </div>
+              </div>
             </>
           ) : (
             <div className="result">
