@@ -1,11 +1,11 @@
 import "./Main.css";
 import { assets } from "../../assets/assets";
-import { useContext } from "react";
+// import { useContext } from "react";
 import { Context } from "../../context/Context";
-
+import { useContext, useRef, useEffect } from 'react';
 const Main = () => {
   const {
-    input,
+    input=input,
     setInput,
     onSent,
     recentPrompt,
@@ -16,9 +16,28 @@ const Main = () => {
 
 const handleCardClick = (prompt) => {
   setInput(prompt);
-  
-
 };
+
+const inputRef = useRef(null);
+
+useEffect(() => {
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      onSent();
+    }
+  };
+
+  const inputElement = inputRef.current;
+  if (inputElement) {
+    inputElement.addEventListener("keydown", handleKeyDown);
+  }
+
+  return () => {
+    if (inputElement) {
+      inputElement.removeEventListener("keydown", handleKeyDown);
+    }
+  };
+}, [onSent]);
 
 
   return (
@@ -79,12 +98,13 @@ const handleCardClick = (prompt) => {
 
           <div className="main-bottom">
             <div className="search-box">
-              <input
-                onChange={(event) => setInput(event.target.value)}
-                value={input}
-                type="text"
-                placeholder="Enter a prompt here"
-              />
+            <input
+  ref={inputRef}
+  onChange={(event) => setInput(event.target.value)}
+  value={input}
+  type="text"
+  placeholder="Enter a prompt here"
+/>
               <div className="search-box-icon">
                 <img src={assets.gallery_icon} alt="GalleryIcon" />
                 <img src={assets.mic_icon} alt="MicIcon" />
