@@ -5,5 +5,5 @@ Introducing 'Gemini Explorer' - a React.js web app that faithfully replicates Go
 1. Clone the repo
 2. Install required dependencies <code>npm i</code>
 3. Run the server <code>npm run dev</code> 
-
+ 
 Live Link: https://gemini-explorer.netlify.app/
